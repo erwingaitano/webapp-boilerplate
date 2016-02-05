@@ -25,12 +25,16 @@
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4"
   },
+  "config": {
+    "push-dest": "production master"
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.js",
     "start": "npm run clean && node server",
     "start-prod": "npm run build && NODE_ENV=production node server",
-    "deploy": "npm run build"
+    "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.js",
+    "deploy-pre": "npm run build && git add dist && git commit --amend -C HEAD",
+    "deploy": "npm run deploy-pre && git push $npm_package_config_pushDest || exit 0"
   },
   "author": "Erwin Gaitan Ospino",
   "license": "ISC"

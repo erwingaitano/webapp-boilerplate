@@ -1,0 +1,27 @@
+extends /layouts/application
+
+block head
+  unless isDevelopment
+    
+    link(href="/assets/common.49123f48b984274847f5.css" rel="stylesheet")
+    
+    link(href="/assets/index.e78838e63f92b310a371.css" rel="stylesheet")
+    
+
+block content
+  nav
+    a(href="/") Home
+    span -
+    a(href="/about") About
+  h1 #{title} PAGE
+
+block javascript
+  unless isDevelopment
+    
+    script(src="/assets/common.cdc08a3dcf407e823423.js")
+    
+    script(src="/assets/index.e78838e63f92b310a371.js")
+    
+  else
+    script(src='/assets/common.js')
+    script(src='/assets/index.js')
