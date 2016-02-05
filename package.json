@@ -33,9 +33,7 @@
     "start": "npm run clean && node server",
     "start-prod": "npm run build && NODE_ENV=production node server",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.js",
-    "deploy-pre": "npm run build && git add dist && git commit --amend -C HEAD",
-    "deploy": "npm run deploy-pre && git push",
-    "postdeploy": "exit 0"
+    "deploy": "npm run build && git add dist && git commit --amend -C HEAD"
   },
   "author": "Erwin Gaitan Ospino",
   "license": "ISC"
