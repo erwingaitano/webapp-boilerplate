@@ -1,12 +1,13 @@
 'use strict';
 
-require('dotenv').config();
+require('dotenv').config({silent: true});
 const express = require('express');
 const path = require('path');
 const app = express();
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = process.env.PORT || 3000;
 app.locals.isDevelopment = isDevelopment;
+console.log(process.env.NODE_ENV);
 
 function webpackServer(app){
   const webpack = require('webpack');
@@ -14,7 +15,7 @@ function webpackServer(app){
   const webpackDevMiddleware = require("webpack-dev-middleware");
   const webpackHotMiddleware = require("webpack-hot-middleware");
   const webpackCompiler = webpack(webpackConfig);
-
+  
   app.use(webpackDevMiddleware(webpackCompiler, {
     hot: true,
     filename: webpackConfig.output.filename,
@@ -29,22 +30,27 @@ function viewsEngine(app){
   const jade = require('jade');
   const srcPathView = path.resolve(__dirname, 'app', 'views');
   const buildPathView = path.resolve(__dirname, 'dist', 'views');
-  app.locals.basedir = path.resolve(__dirname, 'app', 'views');
+  app.locals.basedir = srcPathView;
   app.set('view engine', 'jade');
-  app.set('views', isDevelopment ? srcPathView : buildPathView);
+  app.set('views', isDevelopment ? srcPathView : [buildPathView, srcPathView]);
 }
 
-// We point to our static assets
+// Static assets
 app.use(express.static(path.resolve(__dirname, 'dist')));
-
-// Load Controllers
-app.use(require(path.resolve(__dirname, 'app', 'controllers')));
 
 // Set the view engine
 viewsEngine(app);
 
-// Run webpack only in dev mode
-if (isDevelopment) webpackServer(app);
+if (isDevelopment) {
+  app.locals.pretty = true;
+
+  // Run webpack
+  webpackServer(app);
+}
+
+// Load Controllers (routes) at the end.
+// So that webpack middlewares can load manage his routes first
+app.use(require(path.resolve(__dirname, 'app', 'controllers')));
 
 // Run the server
 app.listen(port, function(){console.log('Server running on port ' + port);});

@@ -11,4 +11,14 @@ router.get('/', function(req, res){
 
 router.use(require('./about.js'));
 
+// catch 404 and forward to error handler
+router.use(function(req, res, next) {
+  res.status(404).render('404', { url: req.originalUrl });
+});
+
+// Error handler
+router.use(function(err, req, res, next) {
+  res.status(500).send('Something broke!');
+});
+
 module.exports = router;

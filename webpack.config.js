@@ -3,12 +3,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const extractTextPlugin = require("extract-text-webpack-plugin");
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const buildPath = path.resolve(__dirname, 'dist', 'assets');
 const assetPath = path.resolve(__dirname, 'app', 'assets');
-const indexPath = path.resolve(assetPath, 'js', 'index.js');
-const aboutPath = path.resolve(assetPath, 'js', 'about.js');
 const hmrRoute = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -18,18 +15,19 @@ const plugins = [
   new webpack.NoErrorsPlugin,
   new webpack.optimize.CommonsChunkPlugin(
     'common', 
-    'common' + (!isDevelopment? '.[hash]' : '') + '.js', 
+    'common' + (!isDevelopment? '.[hash]' : '.bundle') + '.js', 
     ['index', 'about']
   )
 ];
 const entry = {
-  'index': [hmrRoute, indexPath],
-  'about': [hmrRoute, aboutPath]
+  'index': [hmrRoute, path.resolve(assetPath, 'js', 'index.js')],
+  'about': [hmrRoute, path.resolve(assetPath, 'js', 'about.js')],
+  '404': [path.resolve(assetPath, 'js', '404.js')]
 };
 const output = { 
   path: buildPath,
   publicPath: '/assets/',
-  filename: '[name].js'
+  filename: '[name].bundle.js'
 };
 
 /*
@@ -38,6 +36,8 @@ const output = {
  */
 
 if(!isDevelopment){
+  const extractTextPlugin = require("extract-text-webpack-plugin");
+  
   // Remove the hmr scripts
   entry.index.splice(0, 1);
   entry.about.splice(0, 1);
