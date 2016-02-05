@@ -1,0 +1,75 @@
+input,
+textarea{
+  -webkit-appearance: none;
+  background-color: #FFF;
+  box-shadow: none;
+  border: 1px solid $border-color;
+  border-radius: 2px;
+  color: $color-primary;
+  font-family: $font-family-default;
+  font-size: 14px;
+  padding:  15px 10px;
+  width: 100%;
+}
+
+select{
+  font-family: $font-family-default;
+}
+
+textarea{
+  display: block;
+  resize: none;
+}
+
+.form{
+  margin-bottom: 20px;
+}
+
+// Checkbox
+// STRUCTURE:
+//  %label.form-checkbox
+//    %input{:type => "checkbox", :name => ""}
+//    %span.form-checkbox__item
+//    %span.form-checkbox__text Checker
+.form-checkbox{
+  $size: 20px;
+  $innerSize: 12px;
+  cursor: pointer;
+  position: relative;
+
+  .form-checkbox__item{
+    background-color: #FFF;
+    border-radius: 3px;
+    display: inline-block;
+    height: $size;
+    margin-right: 4px;
+    position: relative;
+    vertical-align: middle;
+    width: $size;
+
+    &:before{
+      border-radius: 3px;
+      content: '';
+      height: $innerSize;
+      left: ($size - $innerSize)/2;
+      position: absolute;
+      top: ($size - $innerSize)/2;
+      width: $innerSize;
+    }
+  }
+
+  .form-checkbox__text{
+    vertical-align: middle;
+  }
+
+  input{
+    opacity: 0;
+    position: absolute;
+
+    &:checked ~ .form-checkbox__item{
+      &:before{
+        background-color: $color-secondary;
+      }
+    }
+  }
+}

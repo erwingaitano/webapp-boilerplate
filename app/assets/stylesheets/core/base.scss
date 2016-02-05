@@ -1,0 +1,55 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+//  html
+//    body
+//      .container-main  **** .is-sticky is optional for sticky footers
+//        .container
+//          *** Your actual content **
+//      .footer
+
+body,
+html{
+  height: 100%;
+  width: 100%;
+  position: relative; // If you want to add overflow hidden here for mobile, this is necessary
+}
+
+body{
+  color: $color-primary;
+
+  // Prevent animation at first load of the page
+  &.stop-animation *{ @include transition(none !important); }
+}
+
+img{
+  border: 0;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+button{
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// There's a bug in some browsers that don't allow to scroll when hovering an svg element
+svg{
+  pointer-events: none;
+}
+
+a{
+  cursor: pointer;
+  text-decoration: none;
+}

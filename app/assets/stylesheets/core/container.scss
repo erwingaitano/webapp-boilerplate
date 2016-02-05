@@ -1,0 +1,29 @@
+.container-main{
+  // This is to avoid the horizontal scroll, and I need it to put it 
+  // here since i can't do it on html, body due to problems with the
+  // scrollTop javsacript property always returning 0 when there is an
+  // overflow property defined in the html, body element.
+  overflow: hidden;
+  min-height: 100%;
+
+  &.is-sticky{
+    margin-bottom: -$footer-height;
+
+    &:after{
+      content: '';
+      display: block;
+      height: $footer-height;
+    }
+    
+  }
+}
+
+.container{
+
+}
+
+.container-scrollable{
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow: auto;
+}
