@@ -29,7 +29,7 @@
     "webpack-stats-plugin": "^0.1.1"
   },
   "scripts": {
-    "clean": "rm -rf ./dist && rm -rf ./build",
+    "clean": "rm -rf ./dist",
     "start": "node server",
     "start-dev": "npm run clean && node server",
     "start-prod": "npm run build && NODE_ENV=production node server",

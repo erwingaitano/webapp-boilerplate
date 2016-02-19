@@ -38,7 +38,7 @@ function viewsEngine(app){
 app.use(express.static(path.resolve(__dirname, isDevelopment ? 'app/assets' : 'dist')));
 
 // Allow express to use the webpack assets
-app.use(expressWebpackAsset('./build/webpack-assets.json', {
+app.use(expressWebpackAsset('./dist/webpack-assets.json', {
   devMode: isDevelopment
 }));
 

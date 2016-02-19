@@ -6,7 +6,6 @@ const autoprefixer = require('autoprefixer');
 const statsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 const distPath = path.resolve(__dirname, 'dist', 'assets');
 const assetPath = path.resolve(__dirname, 'app', 'assets');
-const buildPath = path.resolve(__dirname, 'build');
 const hmrRoute = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 const isDevelopment = process.env.NODE_ENV === 'development';
 const assetExtensions = /\.(jpg|png|gif|svg)$/i;
@@ -69,7 +68,7 @@ if(!isDevelopment){
   plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
     new statsWriterPlugin({
-      filename: '../../build/webpack-assets.json',
+      filename: '../../dist/webpack-assets.json',
       fields: ['assetsByChunkName', 'modules'],
       transform: function(data){
         // Assets
