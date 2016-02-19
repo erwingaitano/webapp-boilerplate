@@ -2,25 +2,24 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const paths = require('./config.paths');
+const vars = require('./config.vars');
 const autoprefixer = require('autoprefixer');
 const statsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
-const distPath = path.resolve(__dirname, 'dist', 'assets');
-const assetPath = path.resolve(__dirname, 'app', 'assets');
 const hmrRoute = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
 const isDevelopment = process.env.NODE_ENV === 'development';
-const assetExtensions = /\.(jpg|png|gif|svg)$/i;
 
-const cssLoader = { test: /\.scss$/, include: [assetPath], loader: 'style!css!postcss-loader!sass' };
-const imgLoader = {test: assetExtensions, loaders: []};
+const cssLoader = { test: /\.scss$/, include: [paths.assetPath], loader: 'style!css!postcss-loader!sass' };
+const imgLoader = {test: vars.assetExtensions, loaders: []};
 
 const entry = {
-  index: [hmrRoute, path.resolve(assetPath, 'js', 'index.js')],
-  about: [hmrRoute, path.resolve(assetPath, 'js', 'about.js')],
-  error404: [hmrRoute, path.resolve(assetPath, 'js', 'error404.js')]
+  index: [hmrRoute, path.resolve(paths.assetPath, 'js/index.js')],
+  about: [hmrRoute, path.resolve(paths.assetPath, 'js/about.js')],
+  error404: [hmrRoute, path.resolve(paths.assetPath, 'js/error404.js')]
 };
 const output = { 
-  path: distPath,
-  publicPath: '/assets/',
+  path: isDevelopment ? paths.assetPath : paths.distPath,
+  publicPath: paths.publicPath,
   filename: '[name].bundle.js'
 };
 const plugins = [
@@ -30,7 +29,11 @@ const plugins = [
     name: 'common',
     filename: 'common' + (!isDevelopment? '.[hash]' : '.bundle') + '.js',
     children: true,
-    chunks: ['index', 'about', 'error404']
+    chunks: ['index', 'about']
+  }),
+  new webpack.DefinePlugin({
+    __ASSETS_EXTENSIONS__: vars.assetExtensions,
+    __CONTEXT_ASSETS_PATH__: JSON.stringify(paths.contextForAllAssetsPath)
   })
 ];
 
@@ -43,10 +46,11 @@ if(!isDevelopment){
   const extractTextPlugin = require("extract-text-webpack-plugin");
   
   // Remove the hmr scripts
-  entry.index.splice(0, 1);
-  entry.about.splice(0, 1);
-  entry.error404.splice(0, 1);
-  entry.assets = path.resolve(__dirname, 'config/assets.js');
+  Object.keys(entry).forEach(function(key){
+    entry[key].splice(0, 1);
+  });
+
+  entry.assets = paths.allAssetsPath;
   plugins.shift();
 
   // Add chunkhash to filenames for long-term cache
@@ -54,7 +58,7 @@ if(!isDevelopment){
   output.filename = '[name].[hash].js';
 
   // Extract the css styles from the bundles instead of inlining them
-  cssLoader.loader = extractTextPlugin.extract('style-loader', 'css?root=' + assetPath + '!postcss-loader!sass'); 
+  cssLoader.loader = extractTextPlugin.extract('style-loader', 'css?root=' + paths.assetPath + '!postcss-loader!sass'); 
   plugins.push(new extractTextPlugin('[name].[contenthash].css'));
 
   // Add image compresion
@@ -68,13 +72,13 @@ if(!isDevelopment){
   plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
     new statsWriterPlugin({
-      filename: '../../dist/webpack-assets.json',
+      filename: paths.assetsJsonPath,
       fields: ['assetsByChunkName', 'modules'],
       transform: function(data){
         // Assets
         data.assets = {};
         data.modules.forEach(function(el){
-          if(el.name.match(assetExtensions)) 
+          if(el.name.match(vars.assetExtensions)) 
             data.assets[el.reasons[0].userRequest.substring(1)] = output.publicPath + el.assets[0];
         });
 
@@ -98,7 +102,6 @@ if(!isDevelopment){
         return JSON.stringify(data, null, 2);
       }
     })
-
   );
 }
 
@@ -106,15 +109,15 @@ module.exports = {
   devtool: 'eval-source-map',
   entry: entry,
   output: output,
-  resolve: { root: assetPath },
+  resolve: { root: paths.assetPath },
   module: {
     preLoaders: [
-      { test: /\.js$/, include: [assetPath], loader: 'jshint-loader' }
+      { test: /\.js$/, include: [paths.assetPath], loader: 'jshint-loader' }
     ],
     loaders: [
       cssLoader,
       imgLoader,
-      { test: /\.jsx?$/, loader: 'babel', include: [assetPath],
+      { test: /\.jsx?$/, loader: 'babel', include: [paths.assetPath],
         query: { presets: ['react', 'es2015'] }
       }
     ]

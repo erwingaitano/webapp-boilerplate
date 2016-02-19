@@ -1,12 +1,10 @@
 # DOING
 
 # TODO
-  - serving assets from the server (js, css, images (in both jade and css))
-  - Image, fonts assets 
+  - fonts assets 
   - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
-  - change app to src
 
 # PENDING 
   - use es6 in server
@@ -27,3 +25,4 @@
 # DONE
   - Error pages
   - solve shared chunk thing in the 404 page
+  - change app to src

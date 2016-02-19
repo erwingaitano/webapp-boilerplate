@@ -3,19 +3,19 @@ extends /views/layouts/application
 block head
   unless isDevelopment
     != webpack_asset_css('common')
-    != webpack_asset_css('index')
+    != webpack_asset_css('about')
 
 block content
   nav
-    a(href="/") Home 
-    span - 
+    a(href="/") Home
+    span -
     a(href="/about") About
   h1 #{title} Page
 
 block javascript
   unless isDevelopment
     != webpack_asset_js('common')
-    != webpack_asset_js('index')
+    != webpack_asset_js('about')
   else
-    script(src='/assets/common.bundle.js')
-    script(src='/assets/index.bundle.js')
+    script(src='/common.bundle.js')
+    script(src='/about.bundle.js')
