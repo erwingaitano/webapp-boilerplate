@@ -4,10 +4,11 @@ require('dotenv').config({silent: true});
 const express = require('express');
 const path = require('path');
 const app = express();
+const expressWebpackAsset = require('./app/middlewares/express-webpack-assets');
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = process.env.PORT || 3000;
 app.locals.isDevelopment = isDevelopment;
-console.log(process.env.NODE_ENV);
+app.locals.basedir = path.resolve(__dirname, 'app');
 
 function webpackServer(app){
   const webpack = require('webpack');
@@ -29,14 +30,17 @@ function webpackServer(app){
 function viewsEngine(app){
   const jade = require('jade');
   const srcPathView = path.resolve(__dirname, 'app', 'views');
-  const buildPathView = path.resolve(__dirname, 'dist', 'views');
-  app.locals.basedir = srcPathView;
   app.set('view engine', 'jade');
-  app.set('views', isDevelopment ? srcPathView : [buildPathView, srcPathView]);
+  app.set('views', srcPathView);
 }
 
 // Static assets
-app.use(express.static(path.resolve(__dirname, 'dist')));
+app.use(express.static(path.resolve(__dirname, isDevelopment ? 'app/assets' : 'dist')));
+
+// Allow express to use the webpack assets
+app.use(expressWebpackAsset('./build/webpack-assets.json', {
+  devMode: isDevelopment
+}));
 
 // Set the view engine
 viewsEngine(app);

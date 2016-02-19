@@ -1,20 +1,29 @@
 # DOING
 
 # TODO
-  - serving assets from the server
-  - abstract webpack config for dev and prod
+  - serving assets from the server (js, css, images (in both jade and css))
   - Image, fonts assets 
+  - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?
-  - make webpage with auth that allows you to reproduce playlists from youtube
-  - Tests in the workflow
+  - make webpage with login that allows you to reproduce playlists from youtube
+  - change app to src
 
 # PENDING 
   - use es6 in server
   - manifest file
-  - push to anoother platform besides heroku
-
-# DONE
-  - Error pages
+  - css autoprefixer
+  - Tests in the workflow
+  - push to another platform besides heroku
+  - make a server pretty easy to implement (like mamp)in order to add a index.html file and be enough
 
 # COMMENTS
   - Views are in Jade and we don't need react render in the server for now
+  - if you're logged in, you handle the router to the webapp and the latter has to manage 404 and
+    error pages. If you're not logged in, you use the landing page error pages when necessary.
+
+# QUESTIONS
+  - effectively managing webpack chunks/modules?
+
+# DONE
+  - Error pages
+  - solve shared chunk thing in the 404 page

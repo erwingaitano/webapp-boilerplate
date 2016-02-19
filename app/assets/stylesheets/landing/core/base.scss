@@ -22,7 +22,7 @@ body{
   color: $color-primary;
 
   // Prevent animation at first load of the page
-  &.stop-animation *{ @include transition(none !important); }
+  &.stop-animation *{ transition: none !important; }
 }
 
 img{

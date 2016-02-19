@@ -1,10 +1,9 @@
-extends /layouts/application
+extends /views/layouts/application
 
 block head
   unless isDevelopment
-    <% for (var css in htmlWebpackPlugin.files.css) { %>
-    link(href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet")
-    <% } %>
+    != webpack_asset_css('common')
+    != webpack_asset_css('about')
 
 block content
   nav
@@ -15,9 +14,8 @@ block content
 
 block javascript
   unless isDevelopment
-    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    script(src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>")
-    <% } %>
+    != webpack_asset_js('common')
+    != webpack_asset_js('about')
   else
     script(src='/assets/common.bundle.js')
-    script(src='/assets/index.bundle.js')
+    script(src='/assets/about.bundle.js')

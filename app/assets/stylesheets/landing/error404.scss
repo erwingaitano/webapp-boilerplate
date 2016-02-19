@@ -1,0 +1,25 @@
+@import "./settings/settings";
+@import './core/typography';
+@import './core/base';
+
+body{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/images/landing/whitebg.jpg);
+  background-size: cover;
+}
+
+img{
+  margin-bottom: 10px;
+  width: 150px;
+}
+
+p{
+  margin: 0;
+}
+
+span{
+  color: $color-brand;
+}

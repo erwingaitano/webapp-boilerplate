@@ -15,20 +15,25 @@
     "babel-preset-react": "6.3.13",
     "css-loader": "0.23.1",
     "extract-text-webpack-plugin": "1.0.1",
-    "html-webpack-plugin": "2.8.1",
+    "file-loader": "^0.8.5",
+    "image-webpack-loader": "^1.6.3",
     "jshint": "2.9.1",
     "jshint-loader": "0.8.3",
     "node-sass": "3.4.2",
+    "postcss-loader": "^0.8.1",
     "sass-loader": "3.1.2",
     "style-loader": "0.13.0",
     "webpack": "1.12.12",
     "webpack-dev-middleware": "1.5.1",
-    "webpack-hot-middleware": "2.6.4"
+    "webpack-hot-middleware": "2.6.4",
+    "webpack-stats-plugin": "^0.1.1"
   },
   "scripts": {
+    "clean": "rm -rf ./dist && rm -rf ./build",
     "start": "node server",
+    "start-dev": "npm run clean && node server",
     "start-prod": "npm run build && NODE_ENV=production node server",
-    "build": "rm -rf ./dist && NODE_ENV=production webpack -p --config webpack.config.js",
+    "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.js",
     "deploy": "npm run build && git add . && git commit --amend -C HEAD",
     "deploy-push": "npm run deploy && git push production master --force"
   },

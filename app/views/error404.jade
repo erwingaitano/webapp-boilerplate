@@ -1,0 +1,22 @@
+extends /views/layouts/application
+
+block head
+  unless isDevelopment
+    != webpack_asset_css('common')
+    != webpack_asset_css('error404')
+
+block content
+  div
+    img(src='#{webpack_asset_url("/images/landing/404.jpg")}')
+    p
+      | Link to 
+      span #{url} 
+      | doesn't exist!
+
+block javascript
+  unless isDevelopment
+    != webpack_asset_js('common')
+    != webpack_asset_js('error404')
+  else
+    script(src='/assets/common.bundle.js')
+    script(src='/assets/error404.bundle.js')
