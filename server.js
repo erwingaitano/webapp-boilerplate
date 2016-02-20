@@ -4,7 +4,6 @@ require('dotenv').config({silent: true});
 const express = require('express');
 const paths = require.main.require('./config.paths');
 const isDevelopment = process.env.NODE_ENV === 'development';
-const serveStatic = require('serve-static');
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -25,15 +24,21 @@ function webpackServer(app){
   app.use(webpackHotMiddleware(webpackCompiler, { path: '/__webpack_hmr'}));
 }
 
-// Static assets
-app.use(serveStatic(isDevelopment ? paths.assetPath : paths.distPath, {
-  etag: false,
-  setHeaders: function(res, path){
-    if(isDevelopment) return;
-    res.setHeader('Cache-Control', 'public, max-age=31536000');
-  }
-}));
+function staticAssets(app){
+  // TODO:: waiting for the gzip feature in the npm module
+  const serveStatic = require('serve-static');
+  app.use(serveStatic(isDevelopment ? paths.assetPath : paths.distPath, {
+    setHeaders: function(res, path, stat){
+      if(isDevelopment) return;
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    }
+  }));
+}
 
+// Static assets
+staticAssets(app);
+
+// Webpack Server only in dev mode
 if (isDevelopment) {
   webpackServer(app);
 }

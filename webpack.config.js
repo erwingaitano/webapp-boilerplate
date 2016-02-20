@@ -45,6 +45,7 @@ const plugins = [
 
 if(!isDevelopment){
   const extractTextPlugin = require('extract-text-webpack-plugin');
+  const CompressionPlugin = require('compression-webpack-plugin');
   
   // Remove the hmr scripts
   Object.keys(entry).forEach(function(key){ entry[key].splice(0, 1);});
@@ -105,6 +106,12 @@ if(!isDevelopment){
         delete data.assetsByChunkName;
         return JSON.stringify(data, null, 2);
       }
+    }),
+    new CompressionPlugin({
+        asset: '{file}.gz',
+        algorithm: 'gzip',
+        test: vars.regexAssetsToGzip,
+        minRatio: 0.9
     })
   );
 }

@@ -1,7 +1,6 @@
 # DOING
 
 # TODO
-  - cache headers to dist files
   - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
@@ -24,6 +23,8 @@
   - effectively managing webpack chunks/modules?
 
 # DONE
+  - gzip in server
+  - cache headers to dist files
   - Error pages
   - solve shared chunk thing in the 404 page
   - change app to src
