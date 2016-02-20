@@ -11,8 +11,9 @@ $border-color:                    #e4e4e4;
 ***** TYPOGRAPHY
 ********************/
 
-$helvetica-font:                  "Helvetica Neue", Helvetica, Arial, sans-serif;
-$icon-font:                       "icon";
+$helvetica-font:                  'Helvetica Neue', Helvetica, Arial, sans-serif;
+$amaranth-font-name:              'amaranth-font';
+$amaranth-font:                   $amaranth-font-name, Helvetica;
 $font-size-base:                  14px;
 $font-family-default:             $helvetica-font;
 $font-size-default:               $font-size-base;

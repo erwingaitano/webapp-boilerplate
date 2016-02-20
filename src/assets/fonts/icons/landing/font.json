@@ -1,0 +1,8 @@
+{
+  "fontName": "landing-iconfont",
+  "files": [
+    "./*.svg"
+  ],
+  "baseClass": "landing-icon",
+  "classPrefix": "landing-icon.is-"
+}

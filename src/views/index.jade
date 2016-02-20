@@ -7,7 +7,12 @@ block head
 
 block content
   include /views/partials/header.jade
-  h1 #{title} Page
+  .container
+    h1 #{title} Page
+    p.home-paragraph This is the #{title} page using a font from GoogleFonts Lorem ipsum dolor sit amet, consectetur adipisicing eli
+    p.home-paragraph.is-bold quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    p.home-paragraph.italic consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    p.home-paragraph.is-bold.is-italic tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 
 block javascript
   unless isDevelopment

@@ -1,9 +1,7 @@
 # DOING
 
 # TODO
-  - shared jade templates
-  - organize css file imports in index and about
-  - fonts assets 
+  - cache headers to dist files
   - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
@@ -28,3 +26,8 @@
   - Error pages
   - solve shared chunk thing in the 404 page
   - change app to src
+  - shared jade templates
+  - generate correct common.css file
+  - fonts assets (missing import from google)
+  - font icons (better organization)
+  - organize css file imports in index and about

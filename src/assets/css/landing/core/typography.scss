@@ -1,5 +1,8 @@
+@import '~css/landing/settings/settings.scss';
+
 html{
   -webkit-font-smoothing: antialiased;
+  color: $color-primary;
   font-size: $font-size-default;
   font-family: $font-family-default;
   line-height: $line-height-default;

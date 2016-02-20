@@ -19,8 +19,6 @@ html{
 }
 
 body{
-  color: $color-primary;
-
   // Prevent animation at first load of the page
   &.stop-animation *{ transition: none !important; }
 }

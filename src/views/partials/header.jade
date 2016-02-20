@@ -1,7 +1,13 @@
 header.header
   nav
-    a(href='/', class=(title=='index')? 'is-active' : '') Home 
+    a(href='/', class=(title=='index')? 'is-active' : '')
+      span.landing-icon.is-cycle 
+      | Home 
     span - 
-    a(href='/about', class=(title=='about')? 'is-active' : '') About
+    a(href='/about', class=(title=='about')? 'is-active' : '') 
+      span.landing-icon.is-cycle 
+      | About 
     span - 
-    a(href='/doesnt-exist') 404
+    a(href='/doesnt-exist') 
+      span.landing-icon.is-stop 
+      | 404

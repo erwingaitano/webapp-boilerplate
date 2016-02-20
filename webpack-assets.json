@@ -1,25 +1,33 @@
 {
   "assets": {
+    "/fonts/amaranth/amaranth-bold-webfont.woff": "/amaranth-bold-webfont.0cfc281293643c1e754fd7cdab16673b.woff",
+    "/fonts/amaranth/amaranth-bolditalic-webfont.woff": "/amaranth-bolditalic-webfont.109e0f01b4a3b1c20be96a5e2a448f66.woff",
+    "/fonts/amaranth/amaranth-italic-webfont.woff": "/amaranth-italic-webfont.bc5c226f099d00bfc3938f84218706e0.woff",
+    "/fonts/amaranth/amaranth-regular-webfont.woff": "/amaranth-regular-webfont.95193ac55e5b682d6934c5229bbd2ccb.woff",
+    "/fonts/icons/landing/cycle.svg": "/cycle.cfc1e17666cd582fa1c1c2ef3a47a8bc.svg",
+    "/fonts/icons/landing/stop.svg": "/stop.82b05a36e6c38165aff9d6e2b7d69f9f.svg",
     "/images/favicon.png": "/favicon.d21954e3d78b4685a306718a54f1a740.png",
     "/images/landing/404.jpg": "/404.073444a35ef56a44383a3344b10902c9.jpg",
+    "/images/landing/light-bg.jpg": "/light-bg.c5e46a995598498157d218bf20306310.jpg",
     "/images/landing/whitebg.jpg": "/whitebg.46c9f7c5a3ef755a5a3335cc352d0fe1.jpg",
     "/images/landing/whitebg2.jpg": "/whitebg2.a78be161d5a704143592f18570ed93e0.jpg"
   },
   "entries": {
-    "index": {
-      "js": "/index.a64203505c2b37c75724.js",
-      "css": "/index.29b115e5edaa13aa525f2a17398034fe.css"
-    },
-    "about": {
-      "js": "/about.a64203505c2b37c75724.js",
-      "css": "/about.b9fa31dbc34a4cb03d0ee16a072b34bd.css"
+    "common": {
+      "js": "/common.cdce0cc77a63a1aaa4c4.js",
+      "css": "/common.869dbedd5cd5d31b52c3f322a43e95e9.css"
     },
     "error404": {
-      "js": "/error404.a64203505c2b37c75724.js",
-      "css": "/error404.b01bba7bdde03ffbaaa8020d3a7de6cb.css"
+      "js": "/error404.550f07aeea466e5c6039.js",
+      "css": "/error404.ba8b3ae18fd98590b948911469459aaa.css"
     },
-    "common": {
-      "js": "/common.a64203505c2b37c75724.js"
+    "about": {
+      "js": "/about.faa2d12f3eca8e8be1de.js",
+      "css": "/about.7558b8a6a493bc2b3fc0f85cbf7391e7.css"
+    },
+    "index": {
+      "js": "/index.ec183e6c3e629244998c.js",
+      "css": "/index.d7ed7952f1ef55523f744e45df93e1f8.css"
     }
   }
 }

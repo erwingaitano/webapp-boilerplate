@@ -1,3 +1,19 @@
+@import '~css/landing/settings/settings.scss';
+
+.about-paragraph{
+  font-size: 20px;
+  font-family: $amaranth-font;
+  text-align: justify;
+
+  &.is-italic{
+    font-style: italic;
+  }
+
+  &.is-bold{
+    font-weight: bold;
+  }
+}
+
 body{
   background-color: #F5F5C4;
 }
@@ -5,4 +21,5 @@ body{
 h1{
   padding: 20px;
   text-align: center;
+  transform: rotate(9deg);
 }
