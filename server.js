@@ -3,9 +3,10 @@
 require('dotenv').config({silent: true});
 const express = require('express');
 const paths = require.main.require('./config.paths');
-const app = express();
 const isDevelopment = process.env.NODE_ENV === 'development';
+const serveStatic = require('serve-static');
 const port = process.env.PORT || 3000;
+const app = express();
 
 function webpackServer(app){
   const webpack = require('webpack');
@@ -25,10 +26,15 @@ function webpackServer(app){
 }
 
 // Static assets
-app.use(express.static(isDevelopment ? paths.assetPath : paths.distPath));
+app.use(serveStatic(isDevelopment ? paths.assetPath : paths.distPath, {
+  etag: false,
+  setHeaders: function(res, path){
+    if(isDevelopment) return;
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+  }
+}));
 
 if (isDevelopment) {
-  // Run webpack
   webpackServer(app);
 }
 

@@ -18,6 +18,7 @@
   - Views are in Jade and we don't need react render in the server for now
   - if you're logged in, you handle the router to the webapp and the latter has to manage 404 and
     error pages. If you're not logged in, you use the landing page error pages when necessary.
+  - markojs seems a pretty good template engine
 
 # QUESTIONS
   - effectively managing webpack chunks/modules?
