@@ -6,10 +6,7 @@ block head
     != webpack_asset_css('about')
 
 block content
-  nav
-    a(href="/") Home
-    span -
-    a(href="/about") About
+  include /views/partials/header.jade
   h1 #{title} Page
 
 block javascript

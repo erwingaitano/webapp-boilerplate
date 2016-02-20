@@ -1,6 +1,8 @@
 # DOING
 
 # TODO
+  - shared jade templates
+  - organize css file imports in index and about
   - fonts assets 
   - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?

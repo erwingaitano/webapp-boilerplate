@@ -31,8 +31,8 @@
   "scripts": {
     "clean": "rm -rf ./dist",
     "start": "node server",
-    "start-dev": "npm run clean && node server",
-    "start-prod": "npm run build && NODE_ENV=production node server",
+    "dev": "npm run clean && node server",
+    "prod": "npm run build && NODE_ENV=production node server",
     "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.js",
     "deploy": "npm run build && git add . && git commit --amend -C HEAD",
     "deploy-push": "npm run deploy && git push production master --force"

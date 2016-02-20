@@ -1,4 +1,10 @@
-body {
-  background-color: green;
-  color: white;
+body{
+  background-image: url(/images/landing/light-bg.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+h1{
+  padding: 20px;
+  text-align: center;
 }

@@ -1,24 +1,25 @@
 {
   "assets": {
+    "/images/favicon.png": "/favicon.d21954e3d78b4685a306718a54f1a740.png",
     "/images/landing/404.jpg": "/404.073444a35ef56a44383a3344b10902c9.jpg",
     "/images/landing/whitebg.jpg": "/whitebg.46c9f7c5a3ef755a5a3335cc352d0fe1.jpg",
     "/images/landing/whitebg2.jpg": "/whitebg2.a78be161d5a704143592f18570ed93e0.jpg"
   },
   "entries": {
     "index": {
-      "js": "/index.41643f08bef654481f87.js",
-      "css": "/index.9f29b9e47b7f31385bbe127a8cfb924f.css"
+      "js": "/index.a64203505c2b37c75724.js",
+      "css": "/index.29b115e5edaa13aa525f2a17398034fe.css"
     },
     "about": {
-      "js": "/about.41643f08bef654481f87.js",
-      "css": "/about.7cec9d2e8cd541705af0050402c6efb9.css"
+      "js": "/about.a64203505c2b37c75724.js",
+      "css": "/about.b9fa31dbc34a4cb03d0ee16a072b34bd.css"
     },
     "error404": {
-      "js": "/error404.41643f08bef654481f87.js",
-      "css": "/error404.b03d73af963da9036ec2732fbdfe9e7c.css"
+      "js": "/error404.a64203505c2b37c75724.js",
+      "css": "/error404.b01bba7bdde03ffbaaa8020d3a7de6cb.css"
     },
     "common": {
-      "js": "/common.41643f08bef654481f87.js"
+      "js": "/common.a64203505c2b37c75724.js"
     }
   }
 }

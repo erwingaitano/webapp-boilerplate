@@ -22,7 +22,6 @@ module.exports = function (manifestPath, options) {
   function loadManifest () {
     try {
       var data = {};
-
       if (fs.statSync(manifestPath).isDirectory()) {
         var manifestFiles = fs.readdirSync(manifestPath);
         if (manifestFiles.length === 0) {
@@ -63,11 +62,9 @@ module.exports = function (manifestPath, options) {
     return '<script src="' + getAsset('entries', path)['js'] + '"></script>'; 
   }
 
-  return function (req, res, next) {
-    res.locals.webpack_asset_css = getAssetCss;
-    res.locals.webpack_asset_js = getAssetJs;
-    res.locals.webpack_asset_url = getAssetUrl;
-    next()
+  return {
+    webpack_asset_css: getAssetCss,
+    webpack_asset_js: getAssetJs,
+    webpack_asset_url: getAssetUrl
   }
-
 }
