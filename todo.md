@@ -1,14 +1,12 @@
 # DOING
 
 # TODO
-  - abstract webpack config for dev and prod
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
+  - fix serving gzip on the server
 
 # PENDING
-  - use es6 in server
   - manifest file
-  - css autoprefixer
   - Tests in the workflow
   - push to another platform besides heroku
   - make a server pretty easy to implement (like mamp)in order to add a index.html file and be enough
@@ -23,6 +21,7 @@
   - effectively managing webpack chunks/modules?
 
 # DONE
+  - css autoprefixer
   - gzip in server
   - cache headers to dist files
   - Error pages

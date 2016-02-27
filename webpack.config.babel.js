@@ -31,7 +31,6 @@ const output = {
 };
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin,
   new webpack.optimize.CommonsChunkPlugin({
     name: 'common',
     filename: `common${!isDevelopment ? '.[hash]' : '.bundle'}.js`,
@@ -69,6 +68,7 @@ if (!isDevelopment) {
   // The root option in css-loader is to resolve the urls inside css files
   cssLoader.loader = ExtractTextPlugin.extract('style-loader',
     `css?root=${paths.assetPath}!postcss-loader!sass`);
+
   // TODO:: The fontgen-loader plugin generates the file with a different
   // hash everytime. also it generates multiple woff files
   iconFontLoader.loader = ExtractTextPlugin.extract('style-loader',
@@ -88,7 +88,7 @@ if (!isDevelopment) {
     new StatsWriterPlugin({
       filename: paths.assetsJsonPath,
       fields: ['assetsByChunkName', 'modules'],
-      transform: data => {
+      transform(data) {
         const newData = data;
         // Assets
         newData.assets = {};
@@ -132,34 +132,37 @@ if (!isDevelopment) {
 module.exports = {
   entry,
   output,
+  plugins,
   devtool: 'eval-source-map',
   resolve: {
     root: paths.assetPath,
   },
   module: {
-    preLoaders: [{
-      test: /\.js$/,
-      include: [paths.assetPath],
-      // FIXME: consider using eslint tho
-      loader: 'jshint-loader',
-    }],
     loaders: [
       cssLoader,
       imgLoader,
       iconFontLoader,
       // JS Babel
       {
-        test: /\.jsx?$/,
+        test: /\.js$/,
         loader: 'babel',
         include: [paths.assetPath],
         query: {
           presets: ['react', 'es2015'],
         },
       },
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        include: [paths.assetPath],
+      },
     ],
   },
-  postcss: [autoprefixer({
-    browsers: ['last 2 versions'],
-  })],
-  plugins,
+  postcss: [
+    autoprefixer({ browsers: ['last 2 versions'] })],
+  eslint: {
+    configFile: './.eslintrc',
+    emitError: true,
+    failOnWarning: true,
+  },
 };
