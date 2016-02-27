@@ -4,7 +4,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const config = { basedir: paths.baseDir, cache: true };
 
 // Webpack Asset Helpers so we expose them to the templates
-const expressWebpackAsset = require.main.require('./utils/webpack-assets')(
+const expressWebpackAsset = require(paths.assetHelper)(
   paths.expressWebpackAssetPath, {
     devMode: isDevelopment,
   });

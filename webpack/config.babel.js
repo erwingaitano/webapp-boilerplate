@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-const paths = require('./config.paths');
-const vars = require('./config.vars');
+const paths = require('../config.paths');
+const vars = require('../config.vars');
 const autoprefixer = require('autoprefixer');
 const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
 const hmrRoute = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
@@ -19,6 +19,12 @@ const iconFontLoader = {
   test: /fonts\/icons\/.*\/font\.(js|json)$/,
   loader: 'style!css!fontgen?types=woff',
 };
+const jsBabelLoader = {
+  test: /\.js$/,
+  loaders: ['babel?presets[]=react,presets[]=es2015', 'eslint-loader'],
+  include: [paths.assetPath],
+};
+
 const entry = {
   index: [hmrRoute, path.resolve(paths.assetPath, 'js/index.js')],
   about: [hmrRoute, path.resolve(paths.assetPath, 'js/about.js')],
@@ -31,6 +37,7 @@ const output = {
 };
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoErrorsPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'common',
     filename: `common${!isDevelopment ? '.[hash]' : '.bundle'}.js`,
@@ -67,12 +74,12 @@ if (!isDevelopment) {
   // Extract the css styles from the bundles instead of inlining them
   // The root option in css-loader is to resolve the urls inside css files
   cssLoader.loader = ExtractTextPlugin.extract('style-loader',
-    `css?root=${paths.assetPath}!postcss-loader!sass`);
+    `css?minimize&root=${paths.assetPath}!postcss-loader!sass`);
 
   // TODO:: The fontgen-loader plugin generates the file with a different
   // hash everytime. also it generates multiple woff files
   iconFontLoader.loader = ExtractTextPlugin.extract('style-loader',
-    'css!fontgen?types=woff,eot,ttf');
+    'css?minimize!fontgen?types=woff,eot,ttf');
   plugins.push(new ExtractTextPlugin('[name].[contenthash].css'));
 
   // Add image compresion
@@ -81,7 +88,7 @@ if (!isDevelopment) {
     'image-webpack?progressive=true&bypassOnDebug&optimizationLevel=7&interlaced=false',
   ];
 
-  // TODO:: OccurrenceOrderPlugin ????
+  // TODO: OccurrenceOrderPlugin ????
   // StatsWriterPlugin generates the assets json for the template-manager to consume
   plugins.push(
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -94,8 +101,9 @@ if (!isDevelopment) {
         newData.assets = {};
         newData.modules.forEach(el => {
           if (el.name.match(vars.assetExtensions)) {
-            newData.assets[el.reasons[0].userRequest.substring(1)] = output.publicPath + el.assets[
-              0];
+            newData.assets[el.reasons[0].userRequest.substring(1)] = output.publicPath + el
+              .assets[
+                0];
           }
         });
 
@@ -120,6 +128,9 @@ if (!isDevelopment) {
         return JSON.stringify(newData, null, 2);
       },
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      test: /\.js$/,
+    }),
     new CompressionPlugin({
       asset: '{file}.gz',
       algorithm: 'gzip',
@@ -133,7 +144,7 @@ module.exports = {
   entry,
   output,
   plugins,
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   resolve: {
     root: paths.assetPath,
   },
@@ -142,27 +153,11 @@ module.exports = {
       cssLoader,
       imgLoader,
       iconFontLoader,
-      // JS Babel
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        include: [paths.assetPath],
-        query: {
-          presets: ['react', 'es2015'],
-        },
-      },
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        include: [paths.assetPath],
-      },
+      jsBabelLoader,
     ],
   },
   postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] })],
-  eslint: {
-    configFile: './.eslintrc',
-    emitError: true,
-    failOnWarning: true,
-  },
+    autoprefixer({ browsers: ['last 2 versions'] }),
+  ],
 };
+

@@ -14,4 +14,8 @@ import 'fonts/icons/basics/font.json';
 import 'fonts/amaranth/font.scss';
 import 'css/landing/about.scss';
 
-console.log('About Page JS!');
+function hello() {
+  return 'About Page JS!';
+}
+
+console.log(hello());

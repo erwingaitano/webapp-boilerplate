@@ -1,6 +1,7 @@
 # DOING
 
 # TODO
+  - understand sourcemaps
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
   - fix serving gzip on the server

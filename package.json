@@ -40,7 +40,7 @@
     "dev": "npm run clean && node server",
     "dev-debug": "npm run clean && node --debug server",
     "prod": "npm run build && NODE_ENV=production node server",
-    "build": "npm run clean && NODE_ENV=production webpack -p --config webpack.config.babel.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config ./webpack/config.babel.js",
     "deploy": "npm run build && git add . && git commit --amend -C HEAD",
     "deploy-push": "npm run deploy && git push production master --force"
   },

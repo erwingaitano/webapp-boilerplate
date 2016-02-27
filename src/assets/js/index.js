@@ -13,4 +13,8 @@ import 'fonts/icons/basics/font.json';
 
 import 'css/landing/index.scss';
 
-console.log('Index Page JS!');
+function hello() {
+  return 'Index Page JS!';
+}
+
+console.log(hello());
