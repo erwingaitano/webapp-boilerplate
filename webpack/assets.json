@@ -4,8 +4,8 @@
     "/fonts/amaranth/amaranth-bolditalic-webfont.woff": "/amaranth-bolditalic-webfont.109e0f01b4a3b1c20be96a5e2a448f66.woff",
     "/fonts/amaranth/amaranth-italic-webfont.woff": "/amaranth-italic-webfont.bc5c226f099d00bfc3938f84218706e0.woff",
     "/fonts/amaranth/amaranth-regular-webfont.woff": "/amaranth-regular-webfont.95193ac55e5b682d6934c5229bbd2ccb.woff",
-    "/fonts/icons/landing/cycle.svg": "/cycle.cfc1e17666cd582fa1c1c2ef3a47a8bc.svg",
-    "/fonts/icons/landing/stop.svg": "/stop.82b05a36e6c38165aff9d6e2b7d69f9f.svg",
+    "/fonts/icons/basics/cycle.svg": "/cycle.cfc1e17666cd582fa1c1c2ef3a47a8bc.svg",
+    "/fonts/icons/basics/stop.svg": "/stop.82b05a36e6c38165aff9d6e2b7d69f9f.svg",
     "/images/favicon.png": "/favicon.d21954e3d78b4685a306718a54f1a740.png",
     "/images/landing/404.jpg": "/404.073444a35ef56a44383a3344b10902c9.jpg",
     "/images/landing/light-bg.jpg": "/light-bg.c5e46a995598498157d218bf20306310.jpg",
@@ -14,19 +14,19 @@
   },
   "entries": {
     "common": {
-      "js": "/common.b87c94822608a2bb235f.js",
-      "css": "/common.cb5acb4fe46eb6301223f3df5aacb021.css"
+      "js": "/common.539e5df296a2d11030da.js",
+      "css": "/common.8ff436c8e9cf1bbe2105437b80a06972.css"
     },
     "error404": {
       "js": "/error404.550f07aeea466e5c6039.js",
       "css": "/error404.ba8b3ae18fd98590b948911469459aaa.css"
     },
     "about": {
-      "js": "/about.faa2d12f3eca8e8be1de.js",
+      "js": "/about.744ec3b82753d63adb99.js",
       "css": "/about.7558b8a6a493bc2b3fc0f85cbf7391e7.css"
     },
     "index": {
-      "js": "/index.ec183e6c3e629244998c.js",
+      "js": "/index.c57847ad4217f740c517.js",
       "css": "/index.d7ed7952f1ef55523f744e45df93e1f8.css"
     }
   }

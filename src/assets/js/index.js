@@ -9,7 +9,7 @@ import 'css/landing/core/button.scss';
 import 'css/landing/core/form.scss';
 import 'css/landing/modules/header.scss';
 import 'css/landing/modules/footer.scss';
-import 'fonts/icons/landing/font.json';
+import 'fonts/icons/basics/font.json';
 
 import 'css/landing/index.scss';
 

@@ -1,6 +1,7 @@
 const path = require('path');
 
 const srcFolder = 'src';
+const webpackFolder = 'webpack';
 const baseDir = path.resolve(__dirname, srcFolder);
 module.exports = {
   baseDir,
@@ -9,9 +10,11 @@ module.exports = {
   controllersPath: path.resolve(baseDir, 'controllers'),
   assetPath: path.resolve(baseDir, 'assets'),
   distPath: path.resolve(__dirname, 'dist'),
-  allAssetsPath: path.resolve(__dirname, 'config.assets.js'), // All Assets (jpg|png|svg|gif)
+  // All Assets (jpg|png|svg|gif)
+  allAssetsPath: path.resolve(__dirname, `${webpackFolder}/asset.js`),
   publicPath: '/', // Public path for webpack (you can use a CDN for example)
   contextForAllAssetsPath: path.resolve(__dirname, `${srcFolder}/assets`),
-  expressWebpackAssetPath: path.resolve(__dirname, 'webpack-assets.json'),
-  assetsJsonPath: '../webpack-assets.json', // TODO:: Must be Relative to distPath
+  expressWebpackAssetPath: path.resolve(__dirname, `${webpackFolder}/assets.json`),
+  assetsJsonPath: `../${webpackFolder}/assets.json`, // FIXME: Must be Relative to distPath
 };
+
