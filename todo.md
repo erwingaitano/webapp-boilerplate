@@ -5,7 +5,7 @@
   - make app page with router handler to react and still server side rendering?
   - make webpage with login that allows you to reproduce playlists from youtube
 
-# PENDING 
+# PENDING
   - use es6 in server
   - manifest file
   - css autoprefixer
