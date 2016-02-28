@@ -1,11 +1,11 @@
 # DOING
 
 # TODO
+  - abstract webpack config so you can have like a config.js file to manage dependencies.
+  - make app page with router handler to react and still server side rendering?
+  - fix serving gzip on the server
   - understand sourcemaps
   - serve gzip files
-  - make app page with router handler to react and still server side rendering?
-  - make webpage with login that allows you to reproduce playlists from youtube
-  - fix serving gzip on the server
 
 # PENDING
   - manifest file
