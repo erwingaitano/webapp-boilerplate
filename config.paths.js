@@ -17,6 +17,6 @@ module.exports = {
   publicPath: '/', // Public path for webpack (you can use a CDN for example)
   contextForAllAssetsPath: path.resolve(__dirname, `${srcFolder}/assets`),
   expressWebpackAssetPath: path.resolve(__dirname, `${webpackFolder}/assets.json`),
-  assetsJsonPath: `../${webpackFolder}/assets.json`, // FIXME: Must be Relative to distPath
+  assetsJsonPath: `../${webpackFolder}/assets.json` // FIXME: Must be Relative to distPath
 };
 

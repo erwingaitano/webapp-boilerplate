@@ -16,7 +16,22 @@ function webpackServer(application) {
     hot: true,
     filename: webpackConfig.output.filename,
     publicPath: webpackConfig.output.publicPath,
-    stats: { colors: true },
+    stats: {
+      hash: false,
+      version: false,
+      timings: false,
+      assets: true,
+      colors: true,
+      chunks: false,
+      modules: false,
+      // children: false,
+      // source: false,
+      // errors: true,
+      // errorDetails: false,
+      // warnings: false,
+      // publicPath: false
+      reasons: false
+    }
   }));
 
   application.use(webpackHotMiddleware(webpackCompiler, { path: '/__webpack_hmr' }));
@@ -29,7 +44,7 @@ function staticAssets(application) {
     setHeaders(res) {
       if (isDevelopment) return;
       res.setHeader('Cache-Control', 'public, max-age=31536000');
-    },
+    }
   }));
 }
 

@@ -20,7 +20,7 @@ module.exports = (manifestPath, options) => {
   let isManifestLoaded = false;
 
   options = options || {
-    devMode: false,
+    devMode: false
   };
 
   function loadManifest() {
@@ -70,6 +70,6 @@ module.exports = (manifestPath, options) => {
   return {
     webpack_asset_css: getAssetCss,
     webpack_asset_js: getAssetJs,
-    webpack_asset_url: getAssetUrl,
+    webpack_asset_url: getAssetUrl
   };
 };

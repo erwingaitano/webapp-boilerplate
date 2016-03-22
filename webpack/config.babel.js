@@ -9,31 +9,31 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const cssLoader = {
   test: /\.s?css$/,
   include: [paths.assetPath],
-  loader: 'style!css!postcss-loader!sass',
+  loader: 'style!css!postcss-loader!sass'
 };
 const imgLoader = {
   test: vars.assetExtensions,
-  loaders: [],
+  loaders: []
 };
 const iconFontLoader = {
   test: /fonts\/icons\/.*\/font\.(js|json)$/,
-  loader: 'style!css!fontgen?types=woff',
+  loader: 'style!css!fontgen?types=woff'
 };
 const jsBabelLoader = {
   test: /\.js$/,
   loaders: ['babel?presets[]=react,presets[]=es2015', 'eslint-loader'],
-  include: [paths.assetPath],
+  include: [paths.assetPath]
 };
 
 const entry = {
   index: [hmrRoute, path.resolve(paths.assetPath, 'js/index.js')],
   about: [hmrRoute, path.resolve(paths.assetPath, 'js/about.js')],
-  error404: [hmrRoute, path.resolve(paths.assetPath, 'js/error404.js')],
+  error404: [hmrRoute, path.resolve(paths.assetPath, 'js/error404.js')]
 };
 const output = {
   path: isDevelopment ? paths.assetPath : paths.distPath,
   publicPath: paths.publicPath,
-  filename: '[name].bundle.js',
+  filename: '[name].bundle.js'
 };
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -41,12 +41,12 @@ const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'common',
     filename: `common${!isDevelopment ? '.[hash]' : '.bundle'}.js`,
-    chunks: ['index', 'about'],
+    chunks: ['index', 'about']
   }),
   new webpack.DefinePlugin({
     __ASSETS_EXTENSIONS__: vars.assetExtensions,
-    __CONTEXT_ASSETS_PATH__: JSON.stringify(paths.contextForAllAssetsPath),
-  }),
+    __CONTEXT_ASSETS_PATH__: JSON.stringify(paths.contextForAllAssetsPath)
+  })
 ];
 
 /*
@@ -85,7 +85,7 @@ if (!isDevelopment) {
   // Add image compresion
   imgLoader.loaders = [
     'file?hash=sha512&digest=hex&name=[name].[hash].[ext]',
-    'image-webpack?progressive=true&bypassOnDebug&optimizationLevel=7&interlaced=false',
+    'image-webpack?progressive=true&bypassOnDebug&optimizationLevel=7&interlaced=false'
   ];
 
   // TODO: OccurrenceOrderPlugin ????
@@ -126,16 +126,16 @@ if (!isDevelopment) {
         delete newData.modules;
         delete newData.assetsByChunkName;
         return JSON.stringify(newData, null, 2);
-      },
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
-      test: /\.js$/,
+      test: /\.js$/
     }),
     new CompressionPlugin({
       asset: '{file}.gz',
       algorithm: 'gzip',
       test: vars.regexAssetsToGzip,
-      minRatio: 0.9,
+      minRatio: 0.9
     })
   );
 }
@@ -146,18 +146,17 @@ module.exports = {
   plugins,
   devtool: 'cheap-module-source-map',
   resolve: {
-    root: paths.assetPath,
+    root: paths.assetPath
   },
   module: {
     loaders: [
       cssLoader,
       imgLoader,
       iconFontLoader,
-      jsBabelLoader,
-    ],
+      jsBabelLoader
+    ]
   },
   postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] }),
-  ],
+    autoprefixer({ browsers: ['last 2 versions'] })
+  ]
 };
-
